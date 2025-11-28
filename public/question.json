@@ -1,0 +1,8 @@
+[
+    {
+        "id": 1,
+        "question": "Make code show sum of 2 space seperated digits",
+        "input": "2 3",
+        "output": "5"
+    }
+]
