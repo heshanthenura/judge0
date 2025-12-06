@@ -6,12 +6,11 @@ export async function GET(
   context: { params: { id: string } }
 ) {
   try {
-    const params = await context.params;
-    const id = params.id;
+    const { id } = await context.params;
 
     const { data, error } = await supabase
       .from("challenges")
-      .select("id, title, description,sample_input, sample_output")
+      .select("id, title, description, sample_input, sample_output")
       .eq("id", id)
       .single();
 
@@ -22,7 +21,7 @@ export async function GET(
       );
     }
 
-    return NextResponse.json(data, { status: 200 });
+    return NextResponse.json(data);
   } catch (err) {
     console.error(err);
     return NextResponse.json(
