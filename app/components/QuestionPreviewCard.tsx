@@ -8,8 +8,8 @@ export default function QuestionPreviewCard({
 }: Readonly<QuestionCardPreview>) {
   return (
     <Link
-      href={`/questions/${id}`}
-      className="flex flex-col justify-between bg-white shadow-lg rounded-xl p-5 hover:shadow-2xl transition-shadow duration-300 max-w-[450px] md:max-w-[400px] max-h-60 overflow-hidden border border-gray-100"
+      href={`/question/${id}`}
+      className="flex flex-col justify-start bg-white shadow-lg rounded-xl p-5 hover:shadow-2xl transition-shadow duration-300 max-w-[450px] md:max-w-[400px] max-h-60 overflow-hidden border border-gray-100"
     >
       <h1 className="text-lg font-semibold truncate h-6">{title}</h1>
 

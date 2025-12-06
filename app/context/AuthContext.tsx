@@ -55,12 +55,13 @@ export function AuthProvider({ children }: { readonly children: ReactNode }) {
   );
 
   if (!initialized) return null;
-
+  console.log(loggedIn);
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
+
   if (!context) throw new Error("useAuth must be used inside AuthProvider");
   return context;
 };

@@ -6,13 +6,14 @@ import { useAuth } from "@/app/context/AuthContext";
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { loggedIn, setLoggedIn } = useAuth();
+  const { loggedIn, setLoggedIn, setUser } = useAuth();
   const router = useRouter();
 
   const handleLogout = async () => {
     try {
       await fetch("/api/logout", { method: "POST", credentials: "include" });
       setLoggedIn(false);
+      setUser(null);
       router.push("/login");
     } catch (err) {
       console.error("Logout failed", err);

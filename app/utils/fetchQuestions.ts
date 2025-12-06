@@ -5,3 +5,11 @@ export async function fetchQuestionsPreview() {
   }
   return res.json();
 }
+
+export async function fetchQuestion(id: string) {
+  const res = await fetch(`/api/questions/${id}`);
+  if (!res.ok) {
+    throw new Error("Failed to fetch question");
+  }
+  return res.json();
+}

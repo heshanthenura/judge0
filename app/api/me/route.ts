@@ -10,10 +10,8 @@ export async function GET() {
     return NextResponse.json({ loggedIn: false, user: null });
   }
 
-  const {
-    data: { user },
-    error: authError,
-  } = await supabase.auth.getUser(accessToken);
+  const { data, error: authError } = await supabase.auth.getUser(accessToken);
+  const user = data?.user;
 
   if (authError || !user) {
     return NextResponse.json({ loggedIn: false, user: null });
@@ -25,14 +23,17 @@ export async function GET() {
     .eq("uuid", user.id)
     .single();
 
-  console.log(profile);
-
   if (profileError) {
     console.error("Profile fetch error:", profileError);
   }
 
   return NextResponse.json({
     loggedIn: true,
-    user: profile || { email: user.email, fName: null, lName: null },
+    user: {
+      id: user.id,
+      email: profile?.email || user.email || "",
+      fName: profile?.fName || null,
+      lName: profile?.lName || null,
+    },
   });
 }
